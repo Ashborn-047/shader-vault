@@ -113,7 +113,7 @@ export function DottedSurface({ className, isDark = true, style }: DottedSurface
         scene.add(points)
 
         let count = 0
-        let animationId: number
+        let animationId: number = 0
 
         const animate = () => {
             animationId = requestAnimationFrame(animate)
