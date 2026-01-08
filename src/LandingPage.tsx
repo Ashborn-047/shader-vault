@@ -97,7 +97,7 @@ function ShaderCard({ shader }: { shader: typeof SHADERS[0] }) {
                     href={`/Shader ${shader.id}/card.tsx`}
                     onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = `/Shader ${shader.id}/card.html`;
+                        window.location.href = `/shaders/Shader ${shader.id}/card.html`;
                     }}
                     style={{
                         display: 'inline-flex',
