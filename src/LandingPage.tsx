@@ -93,33 +93,60 @@ function ShaderCard({ shader }: { shader: typeof SHADERS[0] }) {
                 }}>
                     {shader.desc}
                 </p>
-                <a
-                    href={`/Shader ${shader.id}/card.tsx`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        window.location.href = `/shaders/Shader ${shader.id}/card.html`;
-                    }}
-                    style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        padding: '0.625rem 1.25rem',
-                        backgroundColor: isHovered ? shader.color : 'rgba(255,255,255,0.05)',
-                        color: isHovered ? 'black' : 'white',
-                        borderRadius: '0.75rem',
-                        fontSize: '0.875rem',
-                        fontWeight: 600,
-                        textDecoration: 'none',
-                        transition: 'all 0.3s ease',
-                        cursor: 'pointer',
-                        border: 'none'
-                    }}
-                >
-                    <span>Experiment</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                    <a
+                        href={`/shaders/Shader ${shader.id}/shader.html`}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = `/shaders/Shader ${shader.id}/shader.html`;
+                        }}
+                        style={{
+                            flex: 1,
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '0.4rem',
+                            padding: '0.625rem 0',
+                            backgroundColor: isHovered ? shader.color : 'rgba(255,255,255,0.05)',
+                            color: isHovered ? 'black' : 'white',
+                            borderRadius: '0.75rem',
+                            fontSize: '0.8rem',
+                            fontWeight: 700,
+                            textDecoration: 'none',
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer',
+                            border: 'none',
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
+                        Demo
+                    </a>
+                    <a
+                        href={`/shaders/Shader ${shader.id}/card.html`}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.location.href = `/shaders/Shader ${shader.id}/card.html`;
+                        }}
+                        style={{
+                            flex: 1,
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: 'rgba(255,255,255,0.05)',
+                            color: 'white',
+                            borderRadius: '0.75rem',
+                            fontSize: '0.8rem',
+                            fontWeight: 600,
+                            textDecoration: 'none',
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer',
+                            border: `1px solid ${isHovered ? 'rgba(255,255,255,0.2)' : 'transparent'}`,
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
+                        Card
+                    </a>
+                </div>
             </div>
         </div>
     );
