@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, Suspense, lazy } from 'react';
+import { SilkAnimation } from '../shaders/Shader 9/shader';
 
 // --- LAZY LOAD SHADER COMPONENTS ---
 const ShaderComponents = {
@@ -212,7 +213,7 @@ export default function LandingPage() {
 
             {/* HERO */}
             <header style={{
-                minHeight: '70vh',
+                minHeight: '80vh',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -220,8 +221,26 @@ export default function LandingPage() {
                 textAlign: 'center',
                 padding: '4rem 2rem',
                 position: 'relative',
-                background: 'radial-gradient(ellipse at 50% 0%, rgba(120, 0, 255, 0.08) 0%, transparent 60%)'
+                overflow: 'hidden'
             }}>
+                {/* Silk Animation Background */}
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 0,
+                    opacity: 0.7
+                }}>
+                    <SilkAnimation />
+                </div>
+
+                {/* Gradient Overlay for text readability */}
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 1,
+                    background: 'linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.6) 50%, rgba(5,5,5,1) 100%)',
+                    pointerEvents: 'none'
+                }} />
                 {/* Nav */}
                 <nav style={{
                     position: 'absolute',
@@ -231,7 +250,8 @@ export default function LandingPage() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    padding: '1.5rem 3rem'
+                    padding: '1.5rem 3rem',
+                    zIndex: 10
                 }}>
                     <span style={{
                         fontSize: '1.25rem',
@@ -255,23 +275,27 @@ export default function LandingPage() {
                     letterSpacing: '-0.04em',
                     lineHeight: 0.9,
                     margin: 0,
-                    marginBottom: '1.5rem'
+                    marginBottom: '1.5rem',
+                    position: 'relative',
+                    zIndex: 10
                 }}>
                     The Shader<br />
                     <span style={{ fontWeight: 900, fontStyle: 'italic' }}>Vault</span>
                 </h1>
                 <p style={{
                     fontSize: '1.125rem',
-                    color: '#71717a',
+                    color: '#9ca3af',
                     maxWidth: '500px',
                     lineHeight: 1.6,
-                    margin: 0
+                    margin: 0,
+                    position: 'relative',
+                    zIndex: 10
                 }}>
                     A curated library of high-performance generative textures, WebGL interfaces, and Canvas experiments.
                 </p>
 
                 {/* Scroll Indicator */}
-                <div style={{ marginTop: '4rem', opacity: 0.4 }}>
+                <div style={{ marginTop: '4rem', opacity: 0.4, position: 'relative', zIndex: 10 }}>
                     <svg width="20" height="40" viewBox="0 0 20 40">
                         <path d="M10 0V38M10 38L2 30M10 38L18 30" stroke="white" strokeWidth="1" fill="none" />
                     </svg>
