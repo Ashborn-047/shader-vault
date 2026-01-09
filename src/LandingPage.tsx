@@ -95,10 +95,10 @@ function ShaderCard({ shader }: { shader: typeof SHADERS[0] }) {
                 </p>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                     <a
-                        href={`/shaders/Shader ${shader.id}/shader.html`}
+                        href={`/shader-vault/shaders/Shader ${shader.id}/shader.html`}
                         onClick={(e) => {
                             e.preventDefault();
-                            window.location.href = `/shaders/Shader ${shader.id}/shader.html`;
+                            window.location.href = `/shader-vault/shaders/Shader ${shader.id}/shader.html`;
                         }}
                         style={{
                             flex: 1,
@@ -122,10 +122,10 @@ function ShaderCard({ shader }: { shader: typeof SHADERS[0] }) {
                         Demo
                     </a>
                     <a
-                        href={`/shaders/Shader ${shader.id}/card.html`}
+                        href={`/shader-vault/shaders/Shader ${shader.id}/card.html`}
                         onClick={(e) => {
                             e.preventDefault();
-                            window.location.href = `/shaders/Shader ${shader.id}/card.html`;
+                            window.location.href = `/shader-vault/shaders/Shader ${shader.id}/card.html`;
                         }}
                         style={{
                             flex: 1,
