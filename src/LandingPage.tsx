@@ -1,6 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
+
+// --- LAZY LOAD SHADER COMPONENTS ---
+const ShaderComponents = {
+    1: lazy(() => import('../shaders/Shader 1/shader')),
+    2: lazy(() => import('../shaders/Shader 2/shader').then(m => ({ default: m.DotScreenShader }))),
+    3: lazy(() => import('../shaders/Shader 3/shader')),
+    4: lazy(() => import('../shaders/Shader 4/shader')),
+    5: lazy(() => import('../shaders/Shader 5/shader')),
+    6: lazy(() => import('../shaders/Shader 6/shader')),
+    7: lazy(() => import('../shaders/Shader 7/shader')),
+    8: lazy(() => import('../shaders/Shader 8/shader')),
+    9: lazy(() => import('../shaders/Shader 9/shader')),
+    10: lazy(() => import('../shaders/Shader 10/shader')),
+    11: lazy(() => import('../shaders/Shader 11/shader')),
+};
 
 // --- SHADER DATA ---
 const SHADERS = [
@@ -16,6 +31,51 @@ const SHADERS = [
     { id: 10, name: 'Raining Letters', desc: 'Matrix-style falling characters.', color: '#22c55e' },
     { id: 11, name: 'Vortex Profiles', desc: 'WebGL2 radial simulation engine.', color: '#f43f5e' },
 ];
+
+// --- SHADER PREVIEW ---
+function ShaderPreview({ shaderId, color }: { shaderId: number; color: string }) {
+    const ShaderComponent = ShaderComponents[shaderId as keyof typeof ShaderComponents];
+
+    return (
+        <div style={{
+            position: 'absolute',
+            inset: 0,
+            overflow: 'hidden',
+            background: '#000'
+        }}>
+            <Suspense fallback={
+                <div style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: `linear-gradient(135deg, ${color}20 0%, ${color}05 100%)`,
+                }}>
+                    <span style={{
+                        fontSize: '4rem',
+                        fontWeight: 900,
+                        color: color,
+                        opacity: 0.2,
+                        fontFamily: 'monospace'
+                    }}>
+                        {String(shaderId).padStart(2, '0')}
+                    </span>
+                </div>
+            }>
+                <div style={{
+                    width: '100%',
+                    height: '100%',
+                    transform: 'scale(1)',
+                    transformOrigin: 'center center',
+                    pointerEvents: 'none'
+                }}>
+                    <ShaderComponent />
+                </div>
+            </Suspense>
+        </div>
+    );
+}
 
 // --- SHADER CARD ---
 function ShaderCard({ shader }: { shader: typeof SHADERS[0] }) {
@@ -36,38 +96,18 @@ function ShaderCard({ shader }: { shader: typeof SHADERS[0] }) {
                 boxShadow: isHovered ? `0 20px 40px -15px ${shader.color}40` : '0 4px 20px rgba(0,0,0,0.3)',
             }}
         >
-            {/* Gradient Background */}
+            {/* Live Shader Preview */}
             <div style={{
                 height: '180px',
-                background: `linear-gradient(135deg, ${shader.color}20 0%, ${shader.color}05 100%)`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 position: 'relative',
                 overflow: 'hidden'
             }}>
-                {/* Shader Number */}
-                <span style={{
-                    fontSize: '6rem',
-                    fontWeight: 900,
-                    color: shader.color,
-                    opacity: isHovered ? 0.3 : 0.15,
-                    transition: 'opacity 0.4s ease',
-                    fontFamily: 'monospace'
-                }}>
-                    {String(shader.id).padStart(2, '0')}
-                </span>
-                {/* Glow */}
+                <ShaderPreview shaderId={shader.id} color={shader.color} />
+                {/* Overlay gradient for better text contrast */}
                 <div style={{
                     position: 'absolute',
-                    bottom: '-50%',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '150%',
-                    height: '100%',
-                    background: `radial-gradient(circle, ${shader.color}30 0%, transparent 70%)`,
-                    opacity: isHovered ? 1 : 0,
-                    transition: 'opacity 0.5s ease',
+                    inset: 0,
+                    background: 'linear-gradient(to bottom, transparent 50%, rgba(17,17,17,0.9) 100%)',
                     pointerEvents: 'none'
                 }} />
             </div>
