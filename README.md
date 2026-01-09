@@ -12,10 +12,18 @@ A curated React library of high-fidelity generative shaders featuring WebGL, Thr
 ## ✨ Features
 
 - **11 Unique Shader Effects** — From particle systems to WebGL2 vortex simulations
-- **Premium Landing Page** — Grid-based showcase with hover effects and experiment navigation
+- **Premium Landing Page** — Grid-based showcase with live shader previews
 - **Profile Cards** — Each shader integrates with a styled profile card component
+- **Back Navigation** — Easy navigation back to the vault from any shader page
 - **Inline Styles** — Zero CSS dependencies for maximum portability
-- **GitHub Pages Ready** — Automated deployment via GitHub Actions
+
+---
+
+## 🙏 Credits & Inspiration
+
+Many of the shaders in this collection are inspired by the amazing work at **[21st.dev](https://21st.dev)** — a fantastic resource for modern UI components and effects.
+
+This project is built for the community. If you find these shaders useful, please also check out and support the original creators at 21st.dev!
 
 ---
 
@@ -46,7 +54,6 @@ A curated React library of high-fidelity generative shaders featuring WebGL, Thr
 | **3D Graphics** | Three.js r169 |
 | **Animations** | GSAP, Framer Motion |
 | **Styling** | Inline CSS (zero dependencies) |
-| **Deployment** | GitHub Pages via Actions |
 
 ---
 
@@ -55,23 +62,19 @@ A curated React library of high-fidelity generative shaders featuring WebGL, Thr
 ```
 shader-vault/
 ├── src/
-│   ├── LandingPage.tsx       # Main landing page
+│   ├── LandingPage.tsx       # Main landing page with live previews
+│   ├── BackButton.tsx        # Reusable back navigation component
 │   ├── App.tsx               # App entry point
-│   ├── main.tsx              # React DOM render
-│   └── entry-card*.tsx       # Individual shader entries
+│   └── entry-*.tsx           # Individual shader/card entries
 ├── shaders/
 │   ├── Shader 1/
 │   │   ├── shader.tsx        # Fullscreen shader component
 │   │   ├── card.tsx          # Profile card with shader BG
-│   │   └── card.html         # HTML entry for experiments
-│   ├── Shader 2/
-│   │   └── ...
+│   │   ├── shader.html       # HTML entry for fullscreen demo
+│   │   └── card.html         # HTML entry for card experiment
 │   └── ... (through Shader 11)
-├── .github/
-│   └── workflows/
-│       └── deploy.yml        # GitHub Pages deployment
 ├── index.html                # Main entry point
-├── vite.config.ts            # Vite configuration
+├── vite.config.ts            # Vite multi-page configuration
 └── package.json
 ```
 
@@ -89,26 +92,27 @@ npm install
 
 # Start development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
 ```
 
 ---
 
-## 🌐 Deployment
+## 🤝 Contributing
 
-This project uses **GitHub Actions** for automatic deployment to GitHub Pages.
+Contributions are welcome! Here's how you can help:
 
-1. Push to `main` branch
-2. Workflow builds the Vite project
-3. Deploys to `https://ashborn-047.github.io/shader-vault/`
+1. **Fork** the repository
+2. **Create a branch** for your feature (`git checkout -b feature/amazing-shader`)
+3. **Commit** your changes (`git commit -m 'Add amazing shader'`)
+4. **Push** to the branch (`git push origin feature/amazing-shader`)
+5. **Open a Pull Request**
 
-To enable manually:
-- Go to **Settings → Pages → Source → GitHub Actions**
+### Ideas for Contributions
+
+- New shader effects (WebGL, Canvas 2D, SVG, CSS)
+- Performance optimizations
+- Mobile responsiveness improvements
+- Accessibility enhancements
+- Documentation improvements
 
 ---
 
@@ -120,5 +124,5 @@ MIT — Feel free to use, modify, and distribute.
 
 <p align="center">
   <strong>Crafted with React, Three.js & Canvas</strong><br>
-  <sub>© 2025 Shader Vault</sub>
+  <sub>Inspired by <a href="https://21st.dev">21st.dev</a> • © 2025 Shader Vault</sub>
 </p>
